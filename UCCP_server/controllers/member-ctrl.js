@@ -69,15 +69,6 @@ createMember = (req, res) => {
         case "separated":
             member.civilStatus = "3";
             break;
-        // case "cyaf":
-        //     member.civilStatus = "4";
-        //     break;
-        // case "cyf":
-        //     member.civilStatus = "5";
-        //     break;
-        // case "kids":
-        //     member.civilStatus = "6";
-        //     break;
         default:
             break;
     }
@@ -186,15 +177,6 @@ updateMember = async (req, res) => {
             case "separated":
                 member.civilStatus = "3";
                 break;
-            // case "cyaf":
-            //     member.organizationId = "4";
-            //     break;
-            // case "cyf":
-            //     member.organizationId = "5";
-            //     break;
-            // case "kids":
-            //     member.organizationId = "6";
-            //     break;
             default:
                 break;
         }

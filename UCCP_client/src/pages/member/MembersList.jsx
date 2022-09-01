@@ -279,7 +279,7 @@ class MembersList extends Component {
                 
                 
                 {!showTable && (
-                    <h2>No record found.</h2>
+                    <h2>No data found.</h2>
                 )}
             </Wrapper>
         )

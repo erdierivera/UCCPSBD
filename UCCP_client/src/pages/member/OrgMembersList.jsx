@@ -34,7 +34,7 @@ class GetMemberInfo extends Component {
     }
 
     render() {        
-        return <GetMemberData onClick={this.updateUser}>View</GetMemberData>
+        return <GetMemberData onClick={this.getMemberInfo}>View</GetMemberData>
     }
 }
 
@@ -83,7 +83,6 @@ class OrgMembersList extends Component {
         this.setState({ isLoading: true })
         const { id } = this.state
         await api.getMembersByOrg(id).then(members => {
-            console.log(JSON.stringify(members));
             this.setState({
                 members: members.data.data,
                 isLoading: false,
@@ -276,7 +275,7 @@ class OrgMembersList extends Component {
                 )}
                 
                 {!showTable && (
-                    <h2>No record found.</h2>
+                    <h2>No data found.</h2>
                 )}
             </Wrapper>
         )
