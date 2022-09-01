@@ -7,7 +7,7 @@ import 'react-inputs-validation/lib/react-inputs-validation.min.css';
 import Checkbox from './checkbox'
 
 const Title = styled.h1.attrs({
-    className: 'h1',
+    className: 'h4',
 })``
 
 const Wrapper = styled.div.attrs({
@@ -24,19 +24,26 @@ const Wrapper = styled.div.attrs({
 const InputWrapper = styled.div.attrs({
     className: 'form-group form-inline'
 })`
-    margin: 15px 30px;
+    margin: 5px 20px;
+    font-size: 13px;
+`
+
+const MarriageWrapper = styled.div.attrs({
+    id: 'marriageWrapper'
+})`
+    display: none;
 `
 
 const Label = styled.label`
     margin: 5px;
-    width: 200px;
+    width: 150px;
 `
 
 const InputText = styled.input.attrs({
     className: 'form-control',
 })`
     margin-right: 5px;
-    width: 600px;
+    width: 300px;
     display: inline-block;
     border-radius: 10px!important;
     ::placeholder {
@@ -44,6 +51,8 @@ const InputText = styled.input.attrs({
         font-style:italic;
         font-size: small;
       };
+      
+    font-size: 13px;
 `
 
 const ButtonWrapper = styled.div.attrs({
@@ -53,7 +62,7 @@ const ButtonWrapper = styled.div.attrs({
 `
 
 const Button = styled.button.attrs({
-    className: `btn btn-success`,
+    className: `btn btn-primary`,
 })`
     margin: 15px 15px 15px 5px;
 `
@@ -79,6 +88,10 @@ class MembersInsert extends Component {
             organizationId: '',
             memberTypeId: '',
             isActive: false,
+            civilStatus: '',
+            weddingDate: '',
+            spouse: '',
+            age: '',
             showModalPopup: false
         }
     }
@@ -132,14 +145,103 @@ class MembersInsert extends Component {
         this.setState({ birthday })
     }
 
-    handleIsActiveCheckboxChange = event => {
-        const isActive = event.target.checked
-        this.setState({ isActive: isActive | false })
+    handleChangeInputUpdateAge = async event => {
+        const birthday = event.target.value
+        
+        if (birthday === '') {            
+            this.setState({ age: '' })
+        }
+        else {
+            var today = new Date();
+            var birthDate = new Date(birthday);
+            var age = today.getFullYear() - birthDate.getFullYear();
+            var m = today.getMonth() - birthDate.getMonth();
+            if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) 
+            {
+                age--;
+            }
+            this.setState({ age: age })
+        }
     }
 
+    handleIsActiveCheckboxChange = event => {
+        const isActive = event.target.checked
+        this.setState({ isActive: isActive || false })
+    }
+
+    handleChangeInputCivilStatus = event => {
+        const civilStatus = event.target.value
+        if(civilStatus.toLowerCase() === 'married')
+        {
+            document.getElementById("marriageWrapper").style.display = 'block';
+        }
+        else        
+        {
+            document.getElementById("marriageWrapper").style.display = 'none';
+            this.setState({ weddingDate: '' })
+            this.setState({ spouse: '' })
+        }
+        this.setState({ civilStatus: civilStatus })
+    }
+
+    handleChangeInputweddingDate = event => {
+        const weddingDate = event.target.value
+        this.setState({ weddingDate: weddingDate })
+    }
+
+    handleChangeInputSpouse = event => {
+        const spouse = event.target.value
+        this.setState({ spouse: spouse })
+    }
+
+    // validateInput(payload) {
+    //     var response = true;
+    //     if (payload.firstName === '') {
+    //         response = false
+    //     }
+    //     if (payload.lastName === '') {
+    //         response = false
+    //     }
+    //     if (payload.middleName === '') {
+    //         response = false
+    //     }
+    //     if (payload.birthday === '') {
+    //         response = false
+    //     }
+    //     if (payload.occupation === '') {
+    //         response = false
+    //     }
+    //     if (payload.baptismDate === '') {
+    //         response = false
+    //     }
+    //     if (payload.baptizedBy === '') {
+    //         response = false
+    //     }
+    //     if (payload.occupation === '') {
+    //         response = false
+    //     }
+    //     if (payload.occupation === '') {
+    //         response = false
+    //     }
+    //     if (payload.occupation === '') {
+    //         response = false
+    //     }
+    //     if (payload.occupation === '') {
+    //         response = false
+    //     }
+    //     if (payload.occupation === '') {
+    //         response = false
+    //     }
+    //     if (payload.occupation === '') {
+    //         response = false
+    //     }
+    // }
+
     handleIncludeMember = async () => {
-        const { firstName, middleName, lastName, birthday, occupation, baptismDate, baptizedBy, organizationId, memberTypeId, isActive } = this.state
-        const payload = { firstName, middleName, lastName, birthday, occupation, baptismDate, baptizedBy, organizationId, memberTypeId, isActive  }
+        const { firstName, middleName, lastName, birthday, occupation, baptismDate, baptizedBy, organizationId, memberTypeId, isActive, civilStatus, weddingDate, spouse, age } = this.state
+        const payload = { firstName, middleName, lastName, birthday, occupation, baptismDate, baptizedBy, organizationId, memberTypeId, isActive, civilStatus, weddingDate, spouse, age  }
+
+
 
         await api.insertMember(payload).then(res => {
             //window.alert(`Member inserted successfully`)
@@ -154,13 +256,17 @@ class MembersInsert extends Component {
                 baptizedBy: '',
                 memberTypeId: '',
                 organizationId: '',
-                isActive: false
+                isActive: false,
+                civilStatus: '',
+                weddingDate: '',
+                spouse: '',
+                age: ''
             })
         })
     }
 
     render() {
-        const { firstName, middleName, lastName, birthday, occupation, baptismDate, baptizedBy, organizationId, memberTypeId, isActive } = this.state
+        const { firstName, middleName, lastName, birthday, occupation, baptismDate, baptizedBy, organizationId, memberTypeId, isActive, civilStatus, weddingDate, spouse, age } = this.state
         return (
             <Wrapper>
                 <Title>Add Member</Title>
@@ -260,7 +366,19 @@ class MembersInsert extends Component {
                         type="text"
                         value={birthday}
                         onChange={this.handleChangeInputBirthday}
+                        onBlurCapture={this.handleChangeInputUpdateAge}
+                        onLeave
                         placeholder="Enter Birthday"
+                    />
+                </InputWrapper>
+                
+                <InputWrapper>
+                <Label>Age: </Label>
+                    <InputText
+                        type="text"
+                        value={age}
+                        // onChange={this.handleChangeInputBirthday}
+                        readOnly={true}
                     />
                 </InputWrapper>
 
@@ -314,6 +432,38 @@ class MembersInsert extends Component {
                         Required
                     />
                 </InputWrapper>
+                <InputWrapper>
+                    <Label>Civil Status: </Label>
+                    <InputText
+                        type="text"
+                        value={civilStatus}
+                        onChange={this.handleChangeInputCivilStatus}
+                        placeholder="Enter Civil Status"
+                        Required
+                    />
+                </InputWrapper>
+                <MarriageWrapper>
+                    <InputWrapper>
+                        <Label>Wedding Date: </Label>
+                        <InputText
+                            type="text"
+                            value={weddingDate}
+                            onChange={this.handleChangeInputweddingDate}
+                            placeholder="Enter Wedding Date"
+                            Required
+                        />
+                    </InputWrapper>
+                    <InputWrapper>
+                        <Label>Spouse: </Label>
+                        <InputText
+                            type="text"
+                            value={spouse}
+                            onChange={this.handleChangeInputSpouse}
+                            placeholder="Enter Spouse"
+                            Required
+                        />
+                    </InputWrapper>
+                </MarriageWrapper>
                 <ButtonWrapper>
                     <Button onClick={this.handleIncludeMember}>Add Member</Button>
                     <CancelButton href={'/members/list'}>Cancel</CancelButton>

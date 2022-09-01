@@ -11,6 +11,7 @@ export const deleteMemberById = id => api.delete(`/member/${id}`)
 export const getMemberById = id => api.get(`/member/${id}`)
 export const getMembersByOrg = id => api.get(`/member/getMembersByOrg/${id}`)
 export const getMembersByMemberType = id => api.get(`/member/getMembersByMemberType/${id}`)
+export const updateAge = id => api.get(`/member/updateAge`) // add button to update members' age manually
 
 
 export const getAllOrganizations = () => api.get(`/organizations`)
@@ -26,7 +27,8 @@ const apis = {
     getAllOrganizations,
     getMembersByOrg,
     getAllMembershipTypes,
-    getMembersByMemberType
+    getMembersByMemberType,
+    updateAge
 }
 
 export default apis

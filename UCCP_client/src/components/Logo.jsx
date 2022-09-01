@@ -12,7 +12,7 @@ padding:15px;
 class Logo extends Component {
     render() {
         return (
-            <Wrapper href="">
+            <Wrapper href="/">
                 <img src={logo} width="75" height="75" alt="" />
             </Wrapper>
         )

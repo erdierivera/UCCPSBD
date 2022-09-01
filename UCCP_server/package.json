@@ -16,6 +16,6 @@
   "scripts": {    
     "start": "node index.js",
     "start-watch": "nodemon index.js",
-    "dev": "concurrently \"nodemon index.js\" \"cd ../UCCP_client && npm start\""
+    "app": "concurrently \"nodemon index.js\" \"cd ../UCCP_client && npm start\""
   }
 }

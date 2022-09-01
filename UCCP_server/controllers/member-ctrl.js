@@ -15,47 +15,75 @@ createMember = (req, res) => {
     if (!member) {
         return res.status(400).json({ success: false, error: err })
     }
-    switch(member.memberTypeId){
-        case "Regular":
+
+    switch(member.memberTypeId.toLowerCase()){
+        case "regular":
             member.memberTypeId = "1";
             break;
-        case "Associate":
+        case "associate":
             member.memberTypeId = "2";
             break;
-        case "Affiliate":
+        case "affiliate":
             member.memberTypeId = "3";
             break;
-        case "Preparatory":
+        case "preparatory":
             member.memberTypeId = "4";
             break;
-        case "Honorary":
+        case "honorary":
             member.memberTypeId = "5";
             break;
         default:
             break;
     }            
-    switch(member.organizationId.toUpperCase()){
-        case "UCSCA":
+
+    switch(member.organizationId.toLowerCase()){
+        case "ucsca":
             member.organizationId = "1";
             break;
-        case "UCM":
+        case "ucm":
             member.organizationId = "2";
             break;
-        case "CWA":
+        case "cwa":
             member.organizationId = "3";
             break;
-        case "CYAF":
+        case "cyaf":
             member.organizationId = "4";
             break;
-        case "CYF":
+        case "cyf":
             member.organizationId = "5";
             break;
-        case "KIDS":
+        case "kids":
             member.organizationId = "6";
             break;
         default:
             break;
+    }            
+
+    switch(member.civilStatus.toLowerCase()){
+        case "single":
+            member.civilStatus = "1";
+            break;
+        case "married":
+            member.civilStatus = "2";
+            break;
+        case "separated":
+            member.civilStatus = "3";
+            break;
+        // case "cyaf":
+        //     member.civilStatus = "4";
+        //     break;
+        // case "cyf":
+        //     member.civilStatus = "5";
+        //     break;
+        // case "kids":
+        //     member.civilStatus = "6";
+        //     break;
+        default:
+            break;
     }
+    
+    var birthDate = new Date(member.birthday)
+    member.age = getAge(birthDate)
     member
         .save()
         .then(() => {
@@ -94,53 +122,83 @@ updateMember = async (req, res) => {
         member.lastName = body.lastName
         member.middleName = body.middleName
         member.birthday = body.birthday
+        var birthDate = new Date(member.birthday)
+        member.age = getAge(birthDate)
         member.occupation = body.occupation
         member.baptismDate = body.baptismDate
         member.baptizedBy = body.baptizedBy
         member.organizationId = body.organizationId
         member.memberTypeId = body.memberTypeId
         member.isActive = body.isActive
-        switch(member.memberTypeId){
-            case "Regular":
+        member.civilStatus = body.civilStatus
+        member.weddingDate = body.weddingDate
+        member.spouse = body.spouse
+        switch(member.memberTypeId.toLowerCase()){
+            case "regular":
                 member.memberTypeId = "1";
                 break;
-            case "Associate":
+            case "associate":
                 member.memberTypeId = "2";
                 break;
-            case "Affiliate":
+            case "affiliate":
                 member.memberTypeId = "3";
                 break;
-            case "Preparatory":
+            case "preparatory":
                 member.memberTypeId = "4";
                 break;
-            case "Honorary":
+            case "honorary":
                 member.memberTypeId = "5";
                 break;
             default:
                 break;
-        }            
-        switch(member.organizationId.toUpperCase()){
-            case "UCSCA":
+        } 
+
+        switch(member.organizationId.toLowerCase()){
+            case "ucsca":
                 member.organizationId = "1";
                 break;
-            case "UCM":
+            case "ucm":
                 member.organizationId = "2";
                 break;
-            case "CWA":
+            case "cwa":
                 member.organizationId = "3";
                 break;
-            case "CYAF":
+            case "cyaf":
                 member.organizationId = "4";
                 break;
-            case "CYF":
+            case "cyf":
                 member.organizationId = "5";
                 break;
-            case "KIDS":
+            case "kids":
                 member.organizationId = "6";
                 break;
             default:
                 break;
+        }    
+
+        switch(member.civilStatus.toLowerCase()){
+            case "single":
+                member.civilStatus = "1";
+                break;
+            case "married":
+                member.civilStatus = "2";
+                break;
+            case "separated":
+                member.civilStatus = "3";
+                break;
+            // case "cyaf":
+            //     member.organizationId = "4";
+            //     break;
+            // case "cyf":
+            //     member.organizationId = "5";
+            //     break;
+            // case "kids":
+            //     member.organizationId = "6";
+            //     break;
+            default:
+                break;
         }
+
         member
             .save()
             .then(() => {
@@ -157,6 +215,19 @@ updateMember = async (req, res) => {
                 })
             })
     })
+}
+
+function getAge(dateString) 
+{
+    var today = new Date();
+    var birthDate = new Date(dateString);
+    var age = today.getFullYear() - birthDate.getFullYear();
+    var m = today.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) 
+    {
+        age--;
+    }
+    return age;
 }
 
 deleteMember = async (req, res) => {
@@ -204,7 +275,8 @@ getMemberById = async (req, res) => {
                 break;
             default:
                 break;
-        }            
+        } 
+
         switch(member.organizationId){
             case "1":
                 member.organizationId = "UCSCA";
@@ -227,8 +299,43 @@ getMemberById = async (req, res) => {
             default:
                 break;
         }
+                    
+        switch(member.civilStatus){
+            case "1":
+                member.civilStatus = "Single";
+                break;
+            case "2":
+                member.civilStatus = "Married";
+                break;
+            case "3":
+                member.civilStatus = "Separated";
+                break;
+            // case "4":
+            //     member.organizationId = "CYAF";
+            //     break;
+            // case "5":
+            //     member.organizationId = "CYF";
+            //     break;
+            // case "6":
+            //     member.organizationId = "KIDS";
+            //     break;
+            default:
+                break;
+        }
+
         return res.status(200).json({ success: true, data: member })
     }).catch(err => console.log(err))
+}
+
+updateAge = async (req, res) => {
+    await Member.find({}, (err, members) => {
+        members.forEach((member) => {
+            var birthDate = new Date(member.birthday)
+            member.age = getAge(birthDate)
+            member
+            .save()
+        })
+    })
 }
 
 getAllMembers = async (req, res) => {
@@ -277,6 +384,18 @@ getAllMembers = async (req, res) => {
                     break;
                 case "6":
                     mem.organizationId = "KIDS";
+                    break;
+            }
+                        
+            switch(mem.civilStatus){
+                case "1":
+                    mem.civilStatus = "Single";
+                    break;
+                case "2":
+                    mem.civilStatus = "Married";
+                    break;
+                case "3":
+                    mem.civilStatus = "Separated";
                     break;
             }
         });
@@ -331,6 +450,27 @@ getMembersByOrg = async (req, res) => {
                     mem.organizationId = "KIDS";
                     break;
             }
+                        
+            switch(mem.civilStatus){
+                case "1":
+                    mem.civilStatus = "Single";
+                    break;
+                case "2":
+                    mem.civilStatus = "Married";
+                    break;
+                case "3":
+                    mem.civilStatus = "Separated";
+                    break;
+                // case "4":
+                //     mem.organizationId = "CYAF";
+                //     break;
+                // case "5":
+                //     mem.organizationId = "CYF";
+                //     break;
+                // case "6":
+                //     mem.organizationId = "KIDS";
+                //     break;
+            }
         });
         return res.status(200).json({ success: true, data: members })
     }).catch(err => console.log(err))
@@ -382,6 +522,27 @@ getMembersByMemberType = async (req, res) => {
                     mem.organizationId = "KIDS";
                     break;
             }
+                        
+            switch(mem.civilStatus){
+                case "1":
+                    mem.civilStatus = "Single";
+                    break;
+                case "2":
+                    mem.civilStatus = "Married";
+                    break;
+                case "3":
+                    mem.civilStatus = "Separated";
+                    break;
+                // case "4":
+                //     mem.organizationId = "CYAF";
+                //     break;
+                // case "5":
+                //     mem.organizationId = "CYF";
+                //     break;
+                // case "6":
+                //     mem.organizationId = "KIDS";
+                //     break;
+            }
         });
         return res.status(200).json({ success: true, data: members })
     }).catch(err => console.log(err))
@@ -395,5 +556,6 @@ module.exports = {
     getAllMembers,
     getMemberById,
     getMembersByOrg,
-    getMembersByMemberType
+    getMembersByMemberType,
+    updateAge
 }

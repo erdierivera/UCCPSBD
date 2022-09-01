@@ -2,7 +2,7 @@ import React from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
 import { NavBar } from '../components'
-import { MembersList, MemberInsert, MemberUpdate, OrgMembersList, TypeMembersList, HomePage } from '../pages/member'
+import { MembersList, MemberInsert, MemberUpdate, OrgMembersList, TypeMembersList, HomePage, MemberInfo } from '../pages/member'
 import { OrganizationsList } from '../pages/organization'
 import { MembershipTypeList } from '../pages/membershiptype'
 
@@ -21,10 +21,8 @@ function App() {
                 <Route path="/member/orgmembers/:id" exact component={OrgMembersList} />
                 <Route path="/member/typemembers/:id" exact component={TypeMembersList} />
                 <Route path="/membership/list" exact component={MembershipTypeList} />
-                <Route
-                    path="/member/update/:id"
-                    exact
-                    component={MemberUpdate}
+                <Route path="/member/memberinfo/:id" exact component={MemberInfo} />
+                <Route path="/member/update/:id" exact component={MemberUpdate}
                 />
             </Switch>
       </Router>

@@ -67,15 +67,13 @@ class MembershipTypeList extends Component {
                         </span>
                     )
                 },
-                headerStyle: {
-                    },
-                filterable: true,
+                // filterable: true,
                 width: '150'
             },
             {
                 Header: 'Description',
                 accessor: 'description',
-                filterable: true,
+                // filterable: true,
                 width: '90%'
             },
         ]
@@ -92,13 +90,38 @@ class MembershipTypeList extends Component {
                         data={membershipTypes}
                         columns={columns}
                         loading={isLoading}
-                        defaultPageSize={50}
+                        defaultPageSize={5}
                         showPageSizeOptions={true}
                         minRows={0}
-                        className="-highlight -striped"
+                        className="table table-bordered"
+                        getTheadProps={() => ({
+                            className: 'rt-thead -header bg-success text-light'
+                            // className: 'rt-thead -header bg-secondary text-light'
+                            })}
                         getTdProps={() => ({
                             style: {
-                            textAlign: 'left'
+                            textAlign: 'center',
+                            fontSize: '12px',
+                            whiteSpace: 'unset'
+                            }
+                            })}
+                            
+                        getTheadThProps={() => ({
+                            style: {
+                            textAlign: 'center',
+                            fontSize: '13px',
+                            }
+                            })}
+                        getTheadFilterProps={() => ({
+                            style: {
+                            textAlign: 'center',
+                            fontSize: '12px',
+                            }
+                            })}
+                        getPaginationProps={() => ({
+                            style: {
+                            textAlign: 'center',
+                            fontSize: '12px',
                             }
                             })}
                     />

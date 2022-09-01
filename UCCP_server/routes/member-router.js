@@ -9,6 +9,7 @@ router.put('/member/:id', MemberCtrl.updateMember)
 router.delete('/member/:id', MemberCtrl.deleteMember)
 router.get('/member/:id', MemberCtrl.getMemberById)
 router.get('/members', MemberCtrl.getAllMembers)
+router.get('/members/updateAge', MemberCtrl.updateAge)
 router.get('/member/getMembersByOrg/:id', MemberCtrl.getMembersByOrg)
 router.get('/member/getMembersByMemberType/:id', MemberCtrl.getMembersByMemberType)
 

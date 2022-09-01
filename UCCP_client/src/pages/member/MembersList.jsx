@@ -9,6 +9,7 @@ import 'react-table-6/react-table.css'
 const Wrapper = styled.div`
     padding:130px 50px 50px 50px;    
     position: relative;
+    td{font-size:30px}
 `
 
 const Update = styled.div`
@@ -20,6 +21,23 @@ const Delete = styled.div`
     color: #ff0000;
     cursor: pointer;
 `
+
+const GetMemberData = styled.div`
+    color: #ef9b0f;
+    cursor: pointer;
+`
+
+class GetMemberInfo extends Component {
+    getMemberInfo = event => {
+        event.preventDefault()
+
+        window.location.href = `/member/memberinfo/${this.props.id}`
+    }
+
+    render() {        
+        return <GetMemberData onClick={this.getMemberInfo}>View</GetMemberData>
+    }
+}
 
 class UpdateMember extends Component {
     updateUser = event => {
@@ -38,7 +56,7 @@ class DeleteMember extends Component {
         event.preventDefault()
 
         if(
-            window.confirm(`Do you want to delete the member ${this.props.id} permanently?`,)
+            window.confirm(`Do you want to remove ${this.props.value} permanently?`,)
         )
         {
             api.deleteMemberById(this.props.id)
@@ -76,69 +94,104 @@ class MembersList extends Component {
         const { members, isLoading } = this.state
         const columns = [
             {
-                Header: 'First Name',
-                accessor: 'firstName',
-                filterable: true,
-                width: '30%'
-            },
-            {
-                Header: 'Middle Name',
-                accessor: 'middleName',
-                filterable: true,
-                width: '30%'
-            },
-            {
                 Header: 'Last Name',
                 accessor: 'lastName',
                 filterable: true,
-                width: '30%'
             },
             {
-                Header: 'Birthday',
-                accessor: 'birthday',
+                Header: 'First Name',
+                accessor: 'firstName',
                 filterable: true,
-                width: '30%'
             },
             {
-                Header: 'Date of Baptism',
-                accessor: 'baptismDate',
+                id: 'col_middleName',
+                Header: 'Middle Name',
+                accessor:  data => data.middleName || 'N/A',
                 filterable: true,
-                width: '30%'
-            },
-            {
-                Header: 'Baptized By',
-                accessor: 'baptizedBy',
-                filterable: true,
-                width: '30%'
-            },
-            {
-                Header: 'Occupation',
-                accessor: 'occupation',
-                filterable: true,
-                width: '30%'
-            },
-            {
-                Header: 'Organization',
-                accessor: 'organizationId',
-                filterable: true,
-                width: '30%'
-            },
-            {
-                Header: 'Membership Type',
-                accessor: 'memberTypeId',
-                filterable: true,
-                width: '30%'
             },
             {
                 id: 'isActive',
                 Header: 'Status',
                 accessor: d => { return d.isActive ? 'Active' : 'Inactive' },
                 filterable: true,
-                width: '30%'
+            },
+            // {
+            //     Header: 'Date of Baptism',
+            //     accessor: 'baptismDate',
+            //     filterable: true,
+            //     width: '30%'
+            // },
+            // {
+            //     Header: 'Baptized By',
+            //     accessor: 'baptizedBy',
+            //     filterable: true,
+            //     width: '30%'
+            // },
+            {
+                id: 'col_organization',
+                Header: 'Organization',
+                accessor:  data => data.organizationId || 'N/A',
+                filterable: true,
+            },
+            {
+                id: 'col_membership',
+                Header: 'Membership Type',
+                accessor:  data => data.memberTypeId || 'N/A',
+                filterable: true,
+                width: 115
+            },
+            {
+                id: 'col_occupation',
+                Header: 'Occupation',
+                accessor:  data => data.occupation || 'N/A',
+                filterable: true,
+                width: 175
+            },
+            {
+                id: 'col_civil',
+                Header: 'Civil Status',
+                accessor:  data => data.civilStatus || 'N/A',
+                filterable: true,
+            },
+            {
+                id: 'col_weddingDate',
+                Header: 'Wedding Date',
+                accessor: data => data.weddingDate || 'N/A',
+                filterable: true,
+            },
+            {
+                id: 'col_birthday',
+                Header: 'Birthday',
+                accessor: 'birthday',
+                filterable: true,
+                // accessor: row => JSON.stringify(new Date(row.birthday)),
+                // sortType: 'datetime',
+                // cell: ({ cell: { value }}) => value.toLocaleDateString(),
+            },
+            {
+                id: 'col_age',
+                Header: 'Age',
+                // accessor: 'age',
+                // filterable: true,
+                accessor: d => Number(Number(d.age).toFixed(2)) || 'N/A',
+                width: 50
             },
             {
                 Header: '',
                 accessor: '',
+                width: 50,
+                Cell: function(props){
+                    return (
+                        <span>
+                            <GetMemberInfo id={props.original._id} />
+                        </span>
+                    )
+                },
+            },
+            {
+                Header: '',
+                accessor: '',
+                width: 50,
                 Cell: function(props){
                     return (
                         <span>
@@ -148,22 +201,21 @@ class MembersList extends Component {
                 },
                 headerStyle: {
                     },
-                width: '100',
                 sortable:false
             },
             {
                 Header: '',
                 accessor: '',
+                width: 50,
                 Cell: function(props){
                     return (
                         <span>
-                            <DeleteMember id={props.original._id} />
+                            <DeleteMember id={props.original._id} value={props.original.firstName}/>
                         </span>
                     )
                 },
                 headerStyle: {
                     },
-                width: '100',
                 sortable:false
             }
         ]
@@ -180,17 +232,54 @@ class MembersList extends Component {
                         data={members}
                         columns={columns}
                         loading={isLoading}
-                        defaultPageSize={20}
+                        defaultPageSize={10}
+                        // defaultSorted={[
+                        //     {
+                        //     id: "lastName",
+                        //     desc: false
+                        //     }
+                        // ]}
                         showPageSizeOptions={true}
                         minRows={0}
-                        className="-highlight -striped"
+                        className="table table-bordered"
+                        getTheadProps={() => ({
+                            className: 'rt-thead -header bg-success text-light'
+                            // className: 'rt-thead -header bg-secondary text-light'
+                            })}
+                        getTbodyProps={() => ({
+                            // class: 'table table-hover'
+                        })}
                         getTdProps={() => ({
                             style: {
-                            textAlign: 'center'
+                            textAlign: 'center',
+                            fontSize: '12px',
+                            }
+                            })}
+                        getTheadThProps={() => ({
+                            style: {
+                            textAlign: 'center',
+                            fontSize: '13px',
+                            },
+                            })}
+                        getTheadFilterProps={() => ({
+                            style: {
+                            textAlign: 'center',
+                            fontSize: '12px',
+                            }
+                            })}
+                        getPaginationProps={() => ({
+                            style: {
+                            textAlign: 'center',
+                            fontSize: '12px',
                             }
                             })}
                             
                     />
+                )}
+                
+                
+                {!showTable && (
+                    <h2>No record found.</h2>
                 )}
             </Wrapper>
         )

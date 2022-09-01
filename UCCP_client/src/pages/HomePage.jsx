@@ -5,14 +5,14 @@ import homePhoto from '../homePhoto.png'
 
 
 const Wrapper = styled.div`
-    padding: 00px 30px 40px 0px;
+    height: 700px;
 `
 
 class HomePage extends Component {
     render() {
         return (
             <Wrapper>
-                <img src={homePhoto} width="2000" height="1000" alt="" />
+                <img src={homePhoto} width="auto" height="100%" alt="" style={{marginLeft: '150px'}} />
             </Wrapper>
         )
     }

@@ -69,13 +69,13 @@ class OrganizationsList extends Component {
                 },
                 headerStyle: {
                     },
-                filterable: true,
+                // filterable: true,
                 width: '150'
             },
             {
                 Header: 'Name',
                 accessor: 'name',
-                filterable: true,
+                // filterable: true,
                 width: '30%'
             },
         ]
@@ -92,13 +92,39 @@ class OrganizationsList extends Component {
                         data={organizations}
                         columns={columns}
                         loading={isLoading}
-                        defaultPageSize={50}
+                        defaultPageSize={10}
                         showPageSizeOptions={true}
                         minRows={0}
-                        className="-highlight -striped"
+                        filterable={false}
+                        showFilters={false}
+                        className="table table-bordered"
+                        getTheadProps={() => ({
+                            className: 'rt-thead -header bg-success text-light'
+                            // className: 'rt-thead -header bg-secondary text-light'
+                            })}
                         getTdProps={() => ({
                             style: {
-                            textAlign: 'center'
+                            textAlign: 'center',
+                            fontSize: '12px',
+                            }
+                            })}
+                            
+                        getTheadThProps={() => ({
+                            style: {
+                            textAlign: 'center',
+                            fontSize: '13px'
+                            }
+                            })}
+                        getTheadFilterProps={() => ({
+                            style: {
+                            textAlign: 'center',
+                            fontSize: '12px',
+                            }
+                            })}
+                        getPaginationProps={() => ({
+                            style: {
+                            textAlign: 'center',
+                            fontSize: '12px',
                             }
                             })}
                     />
