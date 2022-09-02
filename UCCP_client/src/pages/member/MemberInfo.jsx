@@ -32,6 +32,12 @@ const MarriageWrapper = styled.div.attrs({
     display: none;
 `
 
+const RemovalWrapper = styled.div.attrs({
+    id: 'removalWrapper'
+})`
+    display: none;
+`
+
 const Label = styled.label`
     margin: 5px;
     width: 150px;
@@ -89,8 +95,18 @@ class MemberInfo extends Component {
             isActive: false,
             civilStatus: '',
             weddingDate: '',
+            weddedBy: '',
             spouse: '',
-            age: ''
+            age: '',
+            birthPlace: '',
+            nameOfFather: '',
+            maidenNameOfMother: '',
+            confirmationDate: '',
+            confirmedBy: '',
+            isRemoved: false,
+            removalDate: '',
+            reasonOfRemoval: '',
+            showModalPopup: false
         }
     }
 
@@ -111,25 +127,41 @@ class MemberInfo extends Component {
             isActive: member.data.data.isActive || false,
             civilStatus: member.data.data.civilStatus || '',
             weddingDate: member.data.data.weddingDate || '',
+            weddedBy: member.data.data.weddedBy || '',
             spouse: member.data.data.spouse || '',
-            age: member.data.data.age
+            age: member.data.data.age,
+            birthPlace: member.data.data.birthPlace || '',
+            nameOfFather: member.data.data.nameOfFather || '',
+            maidenNameOfMother: member.data.data.maidenNameOfMother || '',
+            confirmationDate: member.data.data.confirmationDate || '',
+            confirmedBy: member.data.data.confirmedBy || '',
+            isRemoved: member.data.data.isRemoved || false,
+            removalDate: member.data.data.removalDate || '',
+            reasonOfRemoval: member.data.data.reasonOfRemoval || '',
         })
 
-        if(this.state.civilStatus.toLowerCase() === 'married')
-            {
+        if (this.state.civilStatus.toLowerCase() === 'married') {
                 document.getElementById("marriageWrapper").style.display = 'block';
             }
-            else        
-            {
-                document.getElementById("marriageWrapper").style.display = 'none';
-                this.setState({ weddingDate: '' })
-                this.setState({ spouse: '' })
-            }
+        else        
+        {
+            document.getElementById("marriageWrapper").style.display = 'none';
+            this.setState({ weddingDate: '' })
+            this.setState({ spouse: '' })
+        }
+        
+        if (this.state.isRemoved) {
+            document.getElementById("removalWrapper").style.display = 'block';
+        }
+        else {
+            document.getElementById("removalWrapper").style.display = 'none';
+            this.setState({ removalDate: '' })
+            this.setState({ reasonOfRemoval: '' })
+        }
     }
 
     render() {        
-        const { firstName, middleName, lastName, birthday, occupation, baptismDate, baptizedBy, organizationId, memberTypeId, isActive, civilStatus, weddingDate, spouse, age } = this.state
-        
+        const { firstName, middleName, lastName, birthday, occupation, baptismDate, baptizedBy, organizationId, memberTypeId, isActive, civilStatus, weddingDate, spouse, age, weddedBy, nameOfFather, maidenNameOfMother, birthPlace, confirmationDate, confirmedBy, isRemoved, removalDate, reasonOfRemoval } = this.state
         return(
             <Wrapper>                
                 <ModalPopup  
@@ -141,11 +173,18 @@ class MemberInfo extends Component {
 
                 <div style={{ fontFamily: 'system-ui' }}>
                     <label>
-                    <Checkbox
-                        checked={isActive}
-                        readOnly={true}
-                    />
-                    <span style={{ marginLeft: 8 }}>Is Active?</span>
+                        <Checkbox
+                            checked={isActive}
+                            readOnly={true}
+                        />
+                        <span style={{ marginLeft: 8 }}>Is Active?</span>
+                    </label>
+                    <label>
+                        <Checkbox
+                            checked={isRemoved}
+                            readOnly={true}
+                        />
+                        <span style={{ marginLeft: 8 }}>Is Removed?</span>
                     </label>
                 </div>
 
@@ -159,7 +198,7 @@ class MemberInfo extends Component {
                 </InputWrapper>
 
                 <InputWrapper>
-                <Label>Middle Name: </Label> 
+                    <Label>Middle Name: </Label> 
                     <InputText
                         type="text"
                         value={middleName}
@@ -168,7 +207,7 @@ class MemberInfo extends Component {
                 </InputWrapper>
 
                 <InputWrapper>
-                <Label>Last Name: </Label>
+                    <Label>Last Name: </Label>
                     <InputText
                         type="text"
                         value={lastName}
@@ -176,7 +215,7 @@ class MemberInfo extends Component {
                     />
                 </InputWrapper>
                 <InputWrapper>
-                <Label>Birthday: </Label>
+                    <Label>Birthday: </Label>
                     <InputText
                         type="text"
                         value={birthday}
@@ -185,16 +224,53 @@ class MemberInfo extends Component {
                 </InputWrapper>
                 
                 <InputWrapper>
-                <Label>Age: </Label>
+                    <Label>Age: </Label>
                     <InputText
                         type="text"
                         value={age}
                         readOnly={true}
                     />
                 </InputWrapper>
+                
+                <InputWrapper>
+                    <Label>Place of Birth: </Label>
+                    <InputText
+                        type="text"
+                        value={birthPlace}
+                        readOnly={true}
+                    />
+                </InputWrapper>
 
                 <InputWrapper>
-                <Label>Date of Baptism: </Label>
+                    <Label>Father's Name: </Label>
+                    <InputText
+                        type="text"
+                        value={nameOfFather}
+                        readOnly={true}
+                    />
+                </InputWrapper>
+
+                <InputWrapper>
+                    <Label>Mother's Maiden Name: </Label>
+                    <InputText
+                        type="text"
+                        value={maidenNameOfMother}
+                        readOnly={true}
+                    />
+                </InputWrapper>
+                
+                <InputWrapper>
+                    <Label>Membership Type: </Label>
+                    <InputText
+                        type="text"
+                        value={memberTypeId}
+                        readOnly={true}
+                        Required
+                    />
+                </InputWrapper>  
+
+                <InputWrapper>
+                    <Label>Date of Baptism: </Label>
                     <InputText
                         type="text"
                         value={baptismDate}
@@ -203,7 +279,7 @@ class MemberInfo extends Component {
                 </InputWrapper>
 
                 <InputWrapper>
-                <Label>Baptized By: </Label>
+                    <Label>Baptized By: </Label>
                     <InputText
                         type="text"
                         value={baptizedBy}
@@ -212,29 +288,23 @@ class MemberInfo extends Component {
                 </InputWrapper>
 
                 <InputWrapper>
-                    <Label>Occupation: </Label>
+                    <Label>Date of Confirmation: </Label>
                     <InputText
                         type="text"
-                        value={occupation}
+                        value={confirmationDate}
                         readOnly={true}
                     />
                 </InputWrapper>
+
                 <InputWrapper>
-                    <Label>Organization: </Label>
+                    <Label>Confirmed By: </Label>
                     <InputText
                         type="text"
-                        value={organizationId}
+                        value={confirmedBy}
                         readOnly={true}
                     />
                 </InputWrapper>
-                <InputWrapper>
-                    <Label>Membership Type: </Label>
-                    <InputText
-                        type="text"
-                        value={memberTypeId}
-                        readOnly={true}
-                    />
-                </InputWrapper>
+                
                 <InputWrapper>
                     <Label>Civil Status: </Label>
                     <InputText
@@ -260,7 +330,51 @@ class MemberInfo extends Component {
                             readOnly={true}
                         />
                     </InputWrapper>
+                    <InputWrapper>
+                        <Label>Officiating Minister: </Label>
+                        <InputText
+                            type="text"
+                            value={weddedBy}
+                            readOnly={true}
+                        />
+                    </InputWrapper>
                 </MarriageWrapper>
+
+                <InputWrapper>
+                    <Label>Occupation: </Label>
+                    <InputText
+                        type="text"
+                        value={occupation}
+                        readOnly={true}
+                    />
+                </InputWrapper>
+                <InputWrapper>
+                    <Label>Organization: </Label>
+                    <InputText
+                        type="text"
+                        value={organizationId}
+                        readOnly={true}
+                    />
+                </InputWrapper>                
+                
+                <RemovalWrapper>
+                    <InputWrapper>
+                        <Label>Date of Removal: </Label>
+                        <InputText
+                            type="text"
+                            value={removalDate}
+                            readOnly={true}
+                        />
+                    </InputWrapper>
+                    <InputWrapper>
+                        <Label>Reason of Removal: </Label>
+                        <InputText
+                            type="text"
+                            value={reasonOfRemoval}
+                            readOnly={true}
+                        />
+                    </InputWrapper>
+                </RemovalWrapper>
                 <ButtonWrapper>
                     {/* <Button onClick={this.handleUpdateMember}>Update Member</Button> */}
                     <CancelButton href={'/members/list'}>Back</CancelButton>

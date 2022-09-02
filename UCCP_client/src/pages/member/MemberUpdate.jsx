@@ -35,6 +35,12 @@ const MarriageWrapper = styled.div.attrs({
     display: none;
 `
 
+const RemovalWrapper = styled.div.attrs({
+    id: 'removalWrapper'
+})`
+    display: none;
+`
+
 const Label = styled.label`
     margin: 5px;
     width: 150px;
@@ -92,8 +98,17 @@ class MembersUpdate extends Component {
             isActive: false,
             civilStatus: '',
             weddingDate: '',
+            weddedBy: '',
             spouse: '',
             age: '',
+            birthPlace: '',
+            nameOfFather: '',
+            maidenNameOfMother: '',
+            confirmationDate: '',
+            confirmedBy: '',
+            isRemoved: false,
+            removalDate: '',
+            reasonOfRemoval: '',
             showModalPopup: false
         }
     }
@@ -101,6 +116,55 @@ class MembersUpdate extends Component {
     isShowPopup = (status) => {  
         this.setState({ showModalPopup: status });  
       };  
+
+    handleChangeInputWeddedBy = async event => {
+        const weddedBy = event.target.value
+        this.setState({ weddedBy })
+    }  
+
+    handleChangeInputBirthPlace = async event => {
+        const birthPlace = event.target.value
+        this.setState({ birthPlace })
+    }  
+
+    handleChangeInputNameOfFather = async event => {
+        const nameOfFather = event.target.value
+        this.setState({ nameOfFather })
+    }  
+
+    handleChangeInputMaidenNameOfMother = async event => {
+        const maidenNameOfMother = event.target.value
+        this.setState({ maidenNameOfMother })
+    }  
+
+    handleChangeInputConfirmationDate = async event => {
+        const confirmationDate = event.target.value
+        this.setState({ confirmationDate })
+    }  
+
+    handleChangeInputConfirmedBy = async event => {
+        const confirmedBy = event.target.value
+        this.setState({ confirmedBy })
+    }
+
+    handleChangeInputIsRemoved = async event => {
+        const isRemoved = event.target.checked
+        
+        if (isRemoved) {
+            document.getElementById("removalWrapper").style.display = 'block';
+        }
+        else {
+            document.getElementById("removalWrapper").style.display = 'none';
+            this.setState({ removalDate: '' })
+            this.setState({ reasonOfRemoval: '' })
+        }
+        this.setState({ isRemoved: isRemoved || false })
+    }
+
+    handleChangeInputReasonOfRemoval = async event => {
+        const reasonOfRemoval = event.target.value
+        this.setState({ reasonOfRemoval })
+    }
 
     handleChangeInputFirstname = async event => {
         const firstName = event.target.value
@@ -197,8 +261,8 @@ class MembersUpdate extends Component {
     }
 
     handleUpdateMember = async () => {
-        const { id, firstName, middleName, lastName, birthday, occupation, baptismDate, baptizedBy, organizationId, memberTypeId, isActive, civilStatus, weddingDate, spouse, age } = this.state
-        const payload = { firstName, middleName, lastName, birthday, occupation, baptismDate, baptizedBy, organizationId, memberTypeId, isActive, civilStatus, weddingDate, spouse, age  }
+        const { id, firstName, middleName, lastName, birthday, occupation, baptismDate, baptizedBy, organizationId, memberTypeId, isActive, civilStatus, weddingDate, spouse, age, weddedBy, nameOfFather, maidenNameOfMother, birthPlace, confirmationDate, confirmedBy, isRemoved, removalDate, reasonOfRemoval } = this.state
+        const payload = { firstName, middleName, lastName, birthday, occupation, baptismDate, baptizedBy, organizationId, memberTypeId, isActive, civilStatus, weddingDate, spouse, age, weddedBy, nameOfFather, maidenNameOfMother, birthPlace, confirmationDate, confirmedBy, isRemoved, removalDate, reasonOfRemoval  }
 
         await api.updateMemberById(id, payload).then(res => {
             //window.alert(`Member updated successfully`)
@@ -217,8 +281,17 @@ class MembersUpdate extends Component {
                 isActive: isActive,
                 civilStatus: civilStatus,
                 weddingDate: weddingDate,
+                weddedBy: weddedBy,
                 spouse: spouse,
-                age: age
+                age: age,
+                birthPlace: birthPlace,
+                nameOfFather: nameOfFather,
+                maidenNameOfMother: maidenNameOfMother,
+                confirmationDate: confirmationDate,
+                confirmedBy: confirmedBy,
+                isRemoved: isRemoved,
+                removalDate: removalDate,
+                reasonOfRemoval: reasonOfRemoval,
             })
         })
     }
@@ -240,8 +313,17 @@ class MembersUpdate extends Component {
             isActive: member.data.data.isActive || false,
             civilStatus: member.data.data.civilStatus || '',
             weddingDate: member.data.data.weddingDate || '',
+            weddedBy: member.data.data.weddedBy || '',
             spouse: member.data.data.spouse || '',
-            age: member.data.data.age
+            age: member.data.data.age,
+            birthPlace: member.data.data.birthPlace || '',
+            nameOfFather: member.data.data.nameOfFather || '',
+            maidenNameOfMother: member.data.data.maidenNameOfMother || '',
+            confirmationDate: member.data.data.confirmationDate || '',
+            confirmedBy: member.data.data.confirmedBy || '',
+            isRemoved: member.data.data.isRemoved || false,
+            removalDate: member.data.data.removalDate || '',
+            reasonOfRemoval: member.data.data.reasonOfRemoval || '',
         })
 
         if(this.state.civilStatus.toLowerCase() === 'married')
@@ -257,8 +339,7 @@ class MembersUpdate extends Component {
     }
 
     render() {
-        const { firstName, middleName, lastName, birthday, occupation, baptismDate, baptizedBy, organizationId, memberTypeId, isActive, civilStatus, weddingDate, spouse, age } = this.state
-                
+        const { firstName, middleName, lastName, birthday, occupation, baptismDate, baptizedBy, organizationId, memberTypeId, isActive, civilStatus, weddingDate, spouse, age, weddedBy, nameOfFather, maidenNameOfMother, birthPlace, confirmationDate, confirmedBy, isRemoved, removalDate, reasonOfRemoval } = this.state
         return (
             <Wrapper>                
                 <ModalPopup  
@@ -270,11 +351,18 @@ class MembersUpdate extends Component {
 
                 <div style={{ fontFamily: 'system-ui' }}>
                     <label>
-                    <Checkbox
-                        checked={isActive}
-                        onChange={this.handleIsActiveCheckboxChange}
-                    />
-                    <span style={{ marginLeft: 8 }}>Is Active?</span>
+                        <Checkbox
+                            checked={isActive}
+                            onChange={this.handleIsActiveCheckboxChange}
+                        />
+                        <span style={{ marginLeft: 8 }}>Is Active?</span>
+                    </label>
+                    <label>
+                        <Checkbox
+                            checked={isRemoved}
+                            onChange={this.handleChangeInputIsRemoved}
+                        />
+                        <span style={{ marginLeft: 8 }}>Is Removed?</span>
                     </label>
                 </div>
 
@@ -328,6 +416,47 @@ class MembersUpdate extends Component {
                         readOnly={true}
                     />
                 </InputWrapper>
+                
+                <InputWrapper>
+                <Label>Place of Birth: </Label>
+                    <InputText
+                        type="text"
+                        value={birthPlace}
+                        onChange={this.handleChangeInputBirthPlace}
+                        placeholder="Enter Place of Birth"
+                    />
+                </InputWrapper>
+
+                <InputWrapper>
+                <Label>Father's Name: </Label>
+                    <InputText
+                        type="text"
+                        value={nameOfFather}
+                        onChange={this.handleChangeInputNameOfFather}
+                        placeholder="Enter Father's Name"
+                    />
+                </InputWrapper>
+
+                <InputWrapper>
+                <Label>Mother's Maiden Name: </Label>
+                    <InputText
+                        type="text"
+                        value={maidenNameOfMother}
+                        onChange={this.handleChangeInputMaidenNameOfMother}
+                        placeholder="Enter Mother's Maiden Name"
+                    />
+                </InputWrapper>
+                
+                <InputWrapper>
+                    <Label>Membership Type: </Label>
+                    <InputText
+                        type="text"
+                        value={memberTypeId}
+                        onChange={this.handleChangeInputMembershipType}
+                        placeholder="Enter Membership Type"
+                        Required
+                    />
+                </InputWrapper>                
 
                 <InputWrapper>
                 <Label>Date of Baptism: </Label>
@@ -350,34 +479,25 @@ class MembersUpdate extends Component {
                 </InputWrapper>
 
                 <InputWrapper>
-                    <Label>Occupation: </Label>
+                <Label>Date of Confirmation: </Label>
                     <InputText
                         type="text"
-                        value={occupation}
-                        onChange={this.handleChangeInputOccupation}
-                        placeholder="Enter Occupation"
+                        value={confirmationDate}
+                        onChange={this.handleChangeInputConfirmationDate}
+                        placeholder="Enter Date of Confirmation"
                     />
                 </InputWrapper>
+
                 <InputWrapper>
-                    <Label>Organization: </Label>
+                <Label>Confirmed By: </Label>
                     <InputText
                         type="text"
-                        value={organizationId}
-                        onChange={this.handleChangeInputOrganization}
-                        placeholder="Enter Organization"
-                        Required
+                        value={confirmedBy}
+                        onChange={this.handleChangeInputConfirmedBy}
+                        placeholder="Enter Confirmed By"
                     />
                 </InputWrapper>
-                <InputWrapper>
-                    <Label>Membership Type: </Label>
-                    <InputText
-                        type="text"
-                        value={memberTypeId}
-                        onChange={this.handleChangeInputMembershipType}
-                        placeholder="Enter Membership Type"
-                        Required
-                    />
-                </InputWrapper>
+
                 <InputWrapper>
                     <Label>Civil Status: </Label>
                     <InputText
@@ -396,7 +516,6 @@ class MembersUpdate extends Component {
                             value={weddingDate}
                             onChange={this.handleChangeInputweddingDate}
                             placeholder="Enter Wedding Date"
-                            Required
                         />
                     </InputWrapper>
                     <InputWrapper>
@@ -406,10 +525,64 @@ class MembersUpdate extends Component {
                             value={spouse}
                             onChange={this.handleChangeInputSpouse}
                             placeholder="Enter Spouse"
-                            Required
+                        />
+                    </InputWrapper>
+                    <InputWrapper>
+                        <Label>Officiating Minister: </Label>
+                        <InputText
+                            type="text"
+                            value={weddedBy}
+                            onChange={this.handleChangeInputWeddedBy}
+                            placeholder="Enter Officiating Minister"
                         />
                     </InputWrapper>
                 </MarriageWrapper>
+
+                <InputWrapper>
+                    <Label>Occupation: </Label>
+                    <InputText
+                        type="text"
+                        value={occupation}
+                        onChange={this.handleChangeInputOccupation}
+                        placeholder="Enter Occupation"
+                        Required
+                    />
+                </InputWrapper>
+
+                <InputWrapper>
+                    <Label>Organization: </Label>
+                    <InputText
+                        type="text"
+                        value={organizationId}
+                        onChange={this.handleChangeInputOrganization}
+                        placeholder="Enter Organization"
+                        Required
+                    />
+                </InputWrapper>
+                
+                <RemovalWrapper>
+                    <InputWrapper>
+                        <Label>Date of Removal: </Label>
+                        <InputText
+                            type="text"
+                            value={removalDate}
+                            onChange={this.handleChangeInputRemovalDate}
+                            placeholder="Enter Date if Removal"
+                            Required
+                        />
+                    </InputWrapper>
+                    <InputWrapper>
+                        <Label>Reason of Removal: </Label>
+                        <InputText
+                            type="text"
+                            value={reasonOfRemoval}
+                            onChange={this.handleChangeInputReasonOfRemoval}
+                            placeholder="Enter Reason of Removal"
+                            Required
+                        />
+                    </InputWrapper>
+                </RemovalWrapper>                    
+                
                 <ButtonWrapper>
                     <Button onClick={this.handleUpdateMember}>Update Member</Button>
                     <CancelButton href={'/members/list'}>Cancel</CancelButton>

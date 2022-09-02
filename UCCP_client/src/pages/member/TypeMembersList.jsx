@@ -232,18 +232,18 @@ class TypeMembersList extends Component {
                         data={members}
                         columns={columns}
                         loading={isLoading}
-                        defaultPageSize={10}
-                        // defaultSorted={[
-                        //     {
-                        //     id: "lastName",
-                        //     desc: false
-                        //     }
-                        // ]}
+                        defaultPageSize={50}
+                        defaultSorted={[
+                            {
+                            id: "lastName",
+                            desc: false
+                            }
+                        ]}
                         showPageSizeOptions={true}
                         minRows={0}
                         className="table table-bordered"
                         getTheadProps={() => ({
-                            className: 'rt-thead -header bg-success text-light'
+                            className: 'rt-thead -header bg-dark text-light'
                             // className: 'rt-thead -header bg-secondary text-light'
                             })}
                         getTdProps={() => ({

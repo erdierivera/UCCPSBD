@@ -9,7 +9,7 @@ import Links from './Links'
 // })``
 
 const Nav = styled.nav.attrs({
-    className: 'navbar navbar-expand-lg navbar-dark bg-success',
+    className: 'navbar navbar-expand-lg navbar-dark bg-dark',
     // className: 'navbar navbar-expand-lg navbar-dark bg-secondary',
 })`
     position: fixed;

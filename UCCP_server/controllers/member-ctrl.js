@@ -124,6 +124,15 @@ updateMember = async (req, res) => {
         member.civilStatus = body.civilStatus
         member.weddingDate = body.weddingDate
         member.spouse = body.spouse
+        member.weddedBy = body.weddedBy
+        member.nameOfFather = body.nameOfFather
+        member.maidenNameOfMother = body.maidenNameOfMother
+        member.confirmationDate = body.confirmationDate
+        member.confirmedBy = body.confirmedBy
+        member.isRemoved = body.isRemoved
+        member.removalDate = body.removalDate
+        member.reasonOfRemoval = body.reasonOfRemoval
+        member.birthPlace = body.birthPlace
         switch(member.memberTypeId.toLowerCase()){
             case "regular":
                 member.memberTypeId = "1";

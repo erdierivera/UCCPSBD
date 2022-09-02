@@ -95,7 +95,7 @@ class MembershipTypeList extends Component {
                         minRows={0}
                         className="table table-bordered"
                         getTheadProps={() => ({
-                            className: 'rt-thead -header bg-success text-light'
+                            className: 'rt-thead -header bg-dark text-light'
                             // className: 'rt-thead -header bg-secondary text-light'
                             })}
                         getTdProps={() => ({

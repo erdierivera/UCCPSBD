@@ -34,6 +34,12 @@ const MarriageWrapper = styled.div.attrs({
     display: none;
 `
 
+const RemovalWrapper = styled.div.attrs({
+    id: 'removalWrapper'
+})`
+    display: none;
+`
+
 const Label = styled.label`
     margin: 5px;
     width: 150px;
@@ -87,11 +93,20 @@ class MembersInsert extends Component {
             baptizedBy: '',
             organizationId: '',
             memberTypeId: '',
-            isActive: false,
+            isActive: true,
             civilStatus: '',
             weddingDate: '',
+            weddedBy: '',
             spouse: '',
             age: '',
+            birthPlace: '',
+            nameOfFather: '',
+            maidenNameOfMother: '',
+            confirmationDate: '',
+            confirmedBy: '',
+            isRemoved: false,
+            removalDate: '',
+            reasonOfRemoval: '',
             showModalPopup: false
         }
     }
@@ -99,6 +114,62 @@ class MembersInsert extends Component {
     isShowPopup = (status) => {  
         this.setState({ showModalPopup: status });  
       };  
+
+    handleChangeInputWeddedBy = async event => {
+        const weddedBy = event.target.value
+        this.setState({ weddedBy })
+    }  
+
+    handleChangeInputBirthPlace = async event => {
+        const birthPlace = event.target.value
+        this.setState({ birthPlace })
+    }  
+
+    handleChangeInputNameOfFather = async event => {
+        const nameOfFather = event.target.value
+        this.setState({ nameOfFather })
+    }  
+
+    handleChangeInputMaidenNameOfMother = async event => {
+        const maidenNameOfMother = event.target.value
+        this.setState({ maidenNameOfMother })
+    }  
+
+    handleChangeInputConfirmationDate = async event => {
+        const confirmationDate = event.target.value
+        this.setState({ confirmationDate })
+    }  
+
+    handleChangeInputConfirmedBy = async event => {
+        const confirmedBy = event.target.value
+        this.setState({ confirmedBy })
+    }  
+
+    handleChangeInputIsRemoved = async event => {
+        const isRemoved = event.target.checked
+        
+        if(isRemoved)
+        {
+            document.getElementById("removalWrapper").style.display = 'block';
+        }
+        else        
+        {
+            document.getElementById("removalWrapper").style.display = 'none';
+            this.setState({ removalDate: '' })
+            this.setState({ reasonOfRemoval: '' })
+        }
+        this.setState({ isRemoved: isRemoved || false })
+    }  
+
+    handleChangeInputRemovalDate = async event => {
+        const removalDate = event.target.value
+        this.setState({ removalDate })
+    }  
+
+    handleChangeInputReasonOfRemoval = async event => {
+        const reasonOfRemoval = event.target.value
+        this.setState({ reasonOfRemoval })
+    }  
 
     handleChangeInputFirstname = async event => {
         const firstName = event.target.value
@@ -238,10 +309,8 @@ class MembersInsert extends Component {
     // }
 
     handleIncludeMember = async () => {
-        const { firstName, middleName, lastName, birthday, occupation, baptismDate, baptizedBy, organizationId, memberTypeId, isActive, civilStatus, weddingDate, spouse, age } = this.state
-        const payload = { firstName, middleName, lastName, birthday, occupation, baptismDate, baptizedBy, organizationId, memberTypeId, isActive, civilStatus, weddingDate, spouse, age  }
-
-
+        const { firstName, middleName, lastName, birthday, occupation, baptismDate, baptizedBy, organizationId, memberTypeId, isActive, civilStatus, weddingDate, spouse, age, weddedBy, nameOfFather, maidenNameOfMother, birthPlace, confirmationDate, confirmedBy, isRemoved, removalDate, reasonOfRemoval } = this.state
+        const payload = { firstName, middleName, lastName, birthday, occupation, baptismDate, baptizedBy, organizationId, memberTypeId, isActive, civilStatus, weddingDate, spouse, age, weddedBy, nameOfFather, maidenNameOfMother, birthPlace, confirmationDate, confirmedBy, isRemoved, removalDate, reasonOfRemoval  }
 
         await api.insertMember(payload).then(res => {
             //window.alert(`Member inserted successfully`)
@@ -256,17 +325,26 @@ class MembersInsert extends Component {
                 baptizedBy: '',
                 memberTypeId: '',
                 organizationId: '',
-                isActive: false,
+                isActive: true,
                 civilStatus: '',
                 weddingDate: '',
+                weddedBy: '',
                 spouse: '',
-                age: ''
+                age: '',
+                birthPlace: '',
+                nameOfFather: '',
+                maidenNameOfMother: '',
+                confirmationDate: '',
+                confirmedBy: '',
+                isRemoved: false,
+                removalDate: '',
+                reasonOfRemoval: '',
             })
         })
     }
 
     render() {
-        const { firstName, middleName, lastName, birthday, occupation, baptismDate, baptizedBy, organizationId, memberTypeId, isActive, civilStatus, weddingDate, spouse, age } = this.state
+        const { firstName, middleName, lastName, birthday, occupation, baptismDate, baptizedBy, organizationId, memberTypeId, isActive, civilStatus, weddingDate, spouse, age, weddedBy, nameOfFather, maidenNameOfMother, birthPlace, confirmationDate, confirmedBy, isRemoved, removalDate, reasonOfRemoval } = this.state
         return (
             <Wrapper>
                 <Title>Add Member</Title>
@@ -314,7 +392,25 @@ class MembersInsert extends Component {
                     />
                     <span style={{ marginLeft: 8 }}>Is Active?</span>
                     </label>
+                    <label>
+                    <Checkbox
+                        checked={isRemoved}
+                        onChange={this.handleChangeInputIsRemoved}
+                    />
+                    <span style={{ marginLeft: 8 }}>Is Removed?</span>
+                    </label>
                 </div>
+
+                {/* <div style={{ fontFamily: 'system-ui' }}>
+                    <label>
+                    <Checkbox
+                        checked={isActive}
+                        onChange={this.handleIsActiveCheckboxChange}
+                    />
+                    <span style={{ marginLeft: 8 }}>Is Active?</span>
+                    </label>
+                </div> */}
+                
                 <InputWrapper>
                     <Label>First Name: </Label>
                     <InputText
@@ -368,7 +464,7 @@ class MembersInsert extends Component {
                         onChange={this.handleChangeInputBirthday}
                         onBlurCapture={this.handleChangeInputUpdateAge}
                         onLeave
-                        placeholder="Enter Birthday"
+                        placeholder="Enter Birthday (MM/dd/yyyy)"
                     />
                 </InputWrapper>
                 
@@ -379,6 +475,47 @@ class MembersInsert extends Component {
                         value={age}
                         // onChange={this.handleChangeInputBirthday}
                         readOnly={true}
+                    />
+                </InputWrapper>
+
+                <InputWrapper>
+                <Label>Place of Birth: </Label>
+                    <InputText
+                        type="text"
+                        value={birthPlace}
+                        onChange={this.handleChangeInputBirthPlace}
+                        placeholder="Enter Place of Birth"
+                    />
+                </InputWrapper>
+
+                <InputWrapper>
+                <Label>Father's Name: </Label>
+                    <InputText
+                        type="text"
+                        value={nameOfFather}
+                        onChange={this.handleChangeInputNameOfFather}
+                        placeholder="Enter Father's Name"
+                    />
+                </InputWrapper>
+
+                <InputWrapper>
+                <Label>Mother's Maiden Name: </Label>
+                    <InputText
+                        type="text"
+                        value={maidenNameOfMother}
+                        onChange={this.handleChangeInputMaidenNameOfMother}
+                        placeholder="Enter Mother's Maiden Name"
+                    />
+                </InputWrapper>
+                
+                <InputWrapper>
+                    <Label>Membership Type: </Label>
+                    <InputText
+                        type="text"
+                        value={memberTypeId}
+                        onChange={this.handleChangeInputMembershipType}
+                        placeholder="Enter Membership Type"
+                        Required
                     />
                 </InputWrapper>
 
@@ -403,35 +540,25 @@ class MembersInsert extends Component {
                 </InputWrapper>
 
                 <InputWrapper>
-                    <Label>Occupation: </Label>
+                <Label>Date of Confirmation: </Label>
                     <InputText
                         type="text"
-                        value={occupation}
-                        onChange={this.handleChangeInputOccupation}
-                        placeholder="Enter Occupation"
-                        Required
+                        value={confirmationDate}
+                        onChange={this.handleChangeInputConfirmationDate}
+                        placeholder="Enter Date of Confirmation"
                     />
                 </InputWrapper>
+
                 <InputWrapper>
-                    <Label>Organization: </Label>
+                <Label>Confirmed By: </Label>
                     <InputText
                         type="text"
-                        value={organizationId}
-                        onChange={this.handleChangeInputOrganization}
-                        placeholder="Enter Organization"
-                        Required
+                        value={confirmedBy}
+                        onChange={this.handleChangeInputConfirmedBy}
+                        placeholder="Enter Confirmed By"
                     />
                 </InputWrapper>
-                <InputWrapper>
-                    <Label>Membership Type: </Label>
-                    <InputText
-                        type="text"
-                        value={memberTypeId}
-                        onChange={this.handleChangeInputMembershipType}
-                        placeholder="Enter Membership Type"
-                        Required
-                    />
-                </InputWrapper>
+
                 <InputWrapper>
                     <Label>Civil Status: </Label>
                     <InputText
@@ -442,6 +569,7 @@ class MembersInsert extends Component {
                         Required
                     />
                 </InputWrapper>
+
                 <MarriageWrapper>
                     <InputWrapper>
                         <Label>Wedding Date: </Label>
@@ -463,11 +591,68 @@ class MembersInsert extends Component {
                             Required
                         />
                     </InputWrapper>
+                    <InputWrapper>
+                        <Label>Officiating Minister: </Label>
+                        <InputText
+                            type="text"
+                            value={weddedBy}
+                            onChange={this.handleChangeInputWeddedBy}
+                            placeholder="Enter Officiating Minister"
+                            Required
+                        />
+                    </InputWrapper>
                 </MarriageWrapper>
+
+                <InputWrapper>
+                    <Label>Occupation: </Label>
+                    <InputText
+                        type="text"
+                        value={occupation}
+                        onChange={this.handleChangeInputOccupation}
+                        placeholder="Enter Occupation"
+                        Required
+                    />
+                </InputWrapper>
+
+                <InputWrapper>
+                    <Label>Organization: </Label>
+                    <InputText
+                        type="text"
+                        value={organizationId}
+                        onChange={this.handleChangeInputOrganization}
+                        placeholder="Enter Organization"
+                        Required
+                    />
+                </InputWrapper>
+                
+                <RemovalWrapper>
+                    <InputWrapper>
+                        <Label>Date of Removal: </Label>
+                        <InputText
+                            type="text"
+                            value={removalDate}
+                            onChange={this.handleChangeInputRemovalDate}
+                            placeholder="Enter Date if Removal"
+                            Required
+                        />
+                    </InputWrapper>
+                    <InputWrapper>
+                        <Label>Reason of Removal: </Label>
+                        <InputText
+                            type="text"
+                            value={reasonOfRemoval}
+                            onChange={this.handleChangeInputReasonOfRemoval}
+                            placeholder="Enter Reason of Removal"
+                            Required
+                        />
+                    </InputWrapper>
+                </RemovalWrapper>
+                    
                 <ButtonWrapper>
                     <Button onClick={this.handleIncludeMember}>Add Member</Button>
                     <CancelButton href={'/members/list'}>Cancel</CancelButton>
                 </ButtonWrapper>
+
                 <ModalPopup  
                     showModalPopup={this.state.showModalPopup}  
                     onPopupClose={this.isShowPopup}>
