@@ -13,9 +13,12 @@
   "devDependencies": {
     "concurrently": "^7.2.1"
   },
-  "scripts": {    
+  "scripts": {
     "start": "node index.js",
     "start-watch": "nodemon index.js",
     "app": "concurrently \"nodemon index.js\" \"cd ../UCCP_client && npm start\""
+  },
+  "keywords": [],
+  "author": "",
+  "description": ""
   }
-}

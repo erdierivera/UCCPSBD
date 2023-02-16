@@ -1,0 +1,28 @@
+Server running on port \\.\pipe\8106191b-ff20-4938-a9d5-4608d1bf5f90
+MongooseError: Query was already executed: members.find({})
+    at model.Query._wrappedThunk [as _find] (C:\Project\UCCPSBD\UCCP_server\node_modules\mongoose\lib\helpers\query\wrapThunk.js:21:19)
+    at C:\Project\UCCPSBD\UCCP_server\node_modules\kareem\index.js:370:33
+    at processTicksAndRejections (node:internal/process/task_queues:78:11) {
+  originalStack: 'Error\n' +
+    '    at model.Query._wrappedThunk [as _find] (C:\\Project\\UCCPSBD\\UCCP_server\\node_modules\\mongoose\\lib\\helpers\\query\\wrapThunk.js:25:28)\n' +
+    '    at C:\\Project\\UCCPSBD\\UCCP_server\\node_modules\\kareem\\index.js:370:33\n' +
+    '    at processTicksAndRejections (node:internal/process/task_queues:78:11)'
+}
+MongooseError: Query was already executed: members.findOne({ _id: new ObjectId("614573532aa490ef77c4fb6...
+    at model.Query._wrappedThunk [as _findOne] (C:\Project\UCCPSBD\UCCP_server\node_modules\mongoose\lib\helpers\query\wrapThunk.js:21:19)
+    at C:\Project\UCCPSBD\UCCP_server\node_modules\kareem\index.js:370:33
+    at processTicksAndRejections (node:internal/process/task_queues:78:11) {
+  originalStack: 'Error\n' +
+    '    at model.Query._wrappedThunk [as _findOne] (C:\\Project\\UCCPSBD\\UCCP_server\\node_modules\\mongoose\\lib\\helpers\\query\\wrapThunk.js:25:28)\n' +
+    '    at C:\\Project\\UCCPSBD\\UCCP_server\\node_modules\\kareem\\index.js:370:33\n' +
+    '    at processTicksAndRejections (node:internal/process/task_queues:78:11)'
+}
+MongooseError: Query was already executed: members.find({})
+    at model.Query._wrappedThunk [as _find] (C:\Project\UCCPSBD\UCCP_server\node_modules\mongoose\lib\helpers\query\wrapThunk.js:21:19)
+    at C:\Project\UCCPSBD\UCCP_server\node_modules\kareem\index.js:370:33
+    at processTicksAndRejections (node:internal/process/task_queues:78:11) {
+  originalStack: 'Error\n' +
+    '    at model.Query._wrappedThunk [as _find] (C:\\Project\\UCCPSBD\\UCCP_server\\node_modules\\mongoose\\lib\\helpers\\query\\wrapThunk.js:25:28)\n' +
+    '    at C:\\Project\\UCCPSBD\\UCCP_server\\node_modules\\kareem\\index.js:370:33\n' +
+    '    at processTicksAndRejections (node:internal/process/task_queues:78:11)'
+}

@@ -1,0 +1,87 @@
+<html>
+<head>
+    <title>iisnode logs</title>
+    <style type="text/css">
+        body
+        {
+            font-family: "Trebuchet MS" , Arial, Helvetica, sans-serif;
+        }
+        table
+        {
+            border-collapse: collapse;
+        }
+        td, th
+        {
+            border: 1px solid lightgray;
+            padding: 3px 7px 2px 7px;
+        }
+        th
+        {
+            text-align: left;
+            padding-top: 5px;
+            padding-bottom: 4px;
+            background-color: Gray;
+            color: #ffffff;
+        }
+        td.stderr
+        {
+            color: Red;
+        }
+    </style>
+</head>
+<body>
+    <table id="logFilesTable">
+        <tr>
+            <th>
+                Computer name
+            </th>
+            <th>
+                PID
+            </th>
+            <th>
+                Type
+            </th>
+            <th>
+                Created
+            </th>
+            <th>
+                Link
+            </th>
+        </tr>
+    </table>
+    <p id="lastUpdated"></p>
+    <script type="text/javascript">
+
+        // this is replaced with actual data at runtime by code in interceptor.js
+        var logFiles = [{"file":"ERDIE-RIVERA-10448-stderr-1676498168737.txt","computername":"ERDIE-RIVERA","pid":10448,"type":"stderr","created":1676498168737},{"file":"ERDIE-RIVERA-10448-stdout-1676498168733.txt","computername":"ERDIE-RIVERA","pid":10448,"type":"stdout","created":1676498168733},{"file":"ERDIE-RIVERA-13208-stderr-1676469400796.txt","computername":"ERDIE-RIVERA","pid":13208,"type":"stderr","created":1676469400796},{"file":"ERDIE-RIVERA-13208-stdout-1676469400792.txt","computername":"ERDIE-RIVERA","pid":13208,"type":"stdout","created":1676469400792},{"file":"ERDIE-RIVERA-14980-stderr-1676498022017.txt","computername":"ERDIE-RIVERA","pid":14980,"type":"stderr","created":1676498022017},{"file":"ERDIE-RIVERA-14980-stdout-1676498022013.txt","computername":"ERDIE-RIVERA","pid":14980,"type":"stdout","created":1676498022013},{"file":"ERDIE-RIVERA-15984-stderr-1676469193438.txt","computername":"ERDIE-RIVERA","pid":15984,"type":"stderr","created":1676469193438},{"file":"ERDIE-RIVERA-15984-stdout-1676469193435.txt","computername":"ERDIE-RIVERA","pid":15984,"type":"stdout","created":1676469193435},{"file":"ERDIE-RIVERA-16372-stderr-1676469587374.txt","computername":"ERDIE-RIVERA","pid":16372,"type":"stderr","created":1676469587374},{"file":"ERDIE-RIVERA-16372-stdout-1676469587370.txt","computername":"ERDIE-RIVERA","pid":16372,"type":"stdout","created":1676469587370},{"file":"ERDIE-RIVERA-16604-stderr-1676469274379.txt","computername":"ERDIE-RIVERA","pid":16604,"type":"stderr","created":1676469274379},{"file":"ERDIE-RIVERA-16604-stdout-1676469274375.txt","computername":"ERDIE-RIVERA","pid":16604,"type":"stdout","created":1676469274375},{"file":"ERDIE-RIVERA-16936-stderr-1676468537925.txt","computername":"ERDIE-RIVERA","pid":16936,"type":"stderr","created":1676468537925},{"file":"ERDIE-RIVERA-16936-stdout-1676468537921.txt","computername":"ERDIE-RIVERA","pid":16936,"type":"stdout","created":1676468537921},{"file":"ERDIE-RIVERA-17104-stderr-1676468628216.txt","computername":"ERDIE-RIVERA","pid":17104,"type":"stderr","created":1676468628216},{"file":"ERDIE-RIVERA-17104-stdout-1676468628212.txt","computername":"ERDIE-RIVERA","pid":17104,"type":"stdout","created":1676468628212},{"file":"ERDIE-RIVERA-7048-stderr-1676467682087.txt","computername":"ERDIE-RIVERA","pid":7048,"type":"stderr","created":1676467682087},{"file":"ERDIE-RIVERA-7048-stdout-1676467682084.txt","computername":"ERDIE-RIVERA","pid":7048,"type":"stdout","created":1676467682084},{"file":"ERDIE-RIVERA-7624-stderr-1676498108695.txt","computername":"ERDIE-RIVERA","pid":7624,"type":"stderr","created":1676498108695},{"file":"ERDIE-RIVERA-7624-stdout-1676498108691.txt","computername":"ERDIE-RIVERA","pid":7624,"type":"stdout","created":1676498108691},{"file":"ERDIE-RIVERA-7768-stderr-1676497469950.txt","computername":"ERDIE-RIVERA","pid":7768,"type":"stderr","created":1676497469950},{"file":"ERDIE-RIVERA-7768-stdout-1676497469945.txt","computername":"ERDIE-RIVERA","pid":7768,"type":"stdout","created":1676497469945}];
+        var lastUpdated = 1676498169310;
+        var date = new Date();
+
+        date.setTime(lastUpdated);
+        document.getElementById('lastUpdated').innerHTML = 'Index was last updated ' + date;
+
+        logFiles.sort(function (a, b) {
+            return b.created - a.created;
+        });
+
+        var logFilesTable = document.getElementById("logFilesTable");
+        for (var i = 0; i < logFiles.length; i++) {
+            var logFile = logFiles[i];
+            date.setTime(logFile.created);
+            var row = logFilesTable.insertRow(-1);
+            var computerNameCell = row.insertCell(0);
+            var pidCell = row.insertCell(1);
+            var typeCell = row.insertCell(2);
+            var dateCell = row.insertCell(3);
+            var logCell = row.insertCell(4);
+            computerNameCell.innerHTML = logFile.computername;
+            pidCell.innerHTML = logFile.pid.toString();
+            typeCell.innerHTML = logFile.type;
+            typeCell.setAttribute('class', logFile.type);
+            dateCell.innerHTML = date.toString();
+            logCell.innerHTML = '<a href="' + logFile.file + '">log</a>';
+        };
+
+    </script>
+</body>
+</html>

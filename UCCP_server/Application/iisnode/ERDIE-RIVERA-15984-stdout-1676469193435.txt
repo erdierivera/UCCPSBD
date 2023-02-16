@@ -1,0 +1,10 @@
+Server running on port \\.\pipe\0b9dc97d-5d75-43f0-a01a-d7a0af258661
+MongooseError: Query was already executed: members.find({})
+    at model.Query._wrappedThunk [as _find] (C:\Project\UCCPSBD\UCCP_server\node_modules\mongoose\lib\helpers\query\wrapThunk.js:21:19)
+    at C:\Project\UCCPSBD\UCCP_server\node_modules\kareem\index.js:370:33
+    at processTicksAndRejections (node:internal/process/task_queues:78:11) {
+  originalStack: 'Error\n' +
+    '    at model.Query._wrappedThunk [as _find] (C:\\Project\\UCCPSBD\\UCCP_server\\node_modules\\mongoose\\lib\\helpers\\query\\wrapThunk.js:25:28)\n' +
+    '    at C:\\Project\\UCCPSBD\\UCCP_server\\node_modules\\kareem\\index.js:370:33\n' +
+    '    at processTicksAndRejections (node:internal/process/task_queues:78:11)'
+}

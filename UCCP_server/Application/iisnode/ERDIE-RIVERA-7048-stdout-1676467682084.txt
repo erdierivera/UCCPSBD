@@ -1,0 +1,163 @@
+Server running on port \\.\pipe\cb7b1e4e-a93e-4f6c-b584-c59dfac61445
+MongooseError: Query was already executed: members.find({})
+    at model.Query._wrappedThunk [as _find] (C:\Project\UCCPSBD\UCCP_server\node_modules\mongoose\lib\helpers\query\wrapThunk.js:21:19)
+    at C:\Project\UCCPSBD\UCCP_server\node_modules\kareem\index.js:370:33
+    at processTicksAndRejections (node:internal/process/task_queues:78:11) {
+  originalStack: 'Error\n' +
+    '    at model.Query._wrappedThunk [as _find] (C:\\Project\\UCCPSBD\\UCCP_server\\node_modules\\mongoose\\lib\\helpers\\query\\wrapThunk.js:25:28)\n' +
+    '    at C:\\Project\\UCCPSBD\\UCCP_server\\node_modules\\kareem\\index.js:370:33\n' +
+    '    at processTicksAndRejections (node:internal/process/task_queues:78:11)'
+}
+MongooseError: Query was already executed: members.find({})
+    at model.Query._wrappedThunk [as _find] (C:\Project\UCCPSBD\UCCP_server\node_modules\mongoose\lib\helpers\query\wrapThunk.js:21:19)
+    at C:\Project\UCCPSBD\UCCP_server\node_modules\kareem\index.js:370:33
+    at processTicksAndRejections (node:internal/process/task_queues:78:11) {
+  originalStack: 'Error\n' +
+    '    at model.Query._wrappedThunk [as _find] (C:\\Project\\UCCPSBD\\UCCP_server\\node_modules\\mongoose\\lib\\helpers\\query\\wrapThunk.js:25:28)\n' +
+    '    at C:\\Project\\UCCPSBD\\UCCP_server\\node_modules\\kareem\\index.js:370:33\n' +
+    '    at processTicksAndRejections (node:internal/process/task_queues:78:11)'
+}
+MongooseError: Query was already executed: organizations.find({})
+    at model.Query._wrappedThunk [as _find] (C:\Project\UCCPSBD\UCCP_server\node_modules\mongoose\lib\helpers\query\wrapThunk.js:21:19)
+    at C:\Project\UCCPSBD\UCCP_server\node_modules\kareem\index.js:370:33
+    at processTicksAndRejections (node:internal/process/task_queues:78:11) {
+  originalStack: 'Error\n' +
+    '    at model.Query._wrappedThunk [as _find] (C:\\Project\\UCCPSBD\\UCCP_server\\node_modules\\mongoose\\lib\\helpers\\query\\wrapThunk.js:25:28)\n' +
+    '    at C:\\Project\\UCCPSBD\\UCCP_server\\node_modules\\kareem\\index.js:370:33\n' +
+    '    at processTicksAndRejections (node:internal/process/task_queues:78:11)'
+}
+MongooseError: Query was already executed: members.find({})
+    at model.Query._wrappedThunk [as _find] (C:\Project\UCCPSBD\UCCP_server\node_modules\mongoose\lib\helpers\query\wrapThunk.js:21:19)
+    at C:\Project\UCCPSBD\UCCP_server\node_modules\kareem\index.js:370:33
+    at processTicksAndRejections (node:internal/process/task_queues:78:11) {
+  originalStack: 'Error\n' +
+    '    at model.Query._wrappedThunk [as _find] (C:\\Project\\UCCPSBD\\UCCP_server\\node_modules\\mongoose\\lib\\helpers\\query\\wrapThunk.js:25:28)\n' +
+    '    at C:\\Project\\UCCPSBD\\UCCP_server\\node_modules\\kareem\\index.js:370:33\n' +
+    '    at processTicksAndRejections (node:internal/process/task_queues:78:11)'
+}
+MongooseError: Query was already executed: organizations.find({})
+    at model.Query._wrappedThunk [as _find] (C:\Project\UCCPSBD\UCCP_server\node_modules\mongoose\lib\helpers\query\wrapThunk.js:21:19)
+    at C:\Project\UCCPSBD\UCCP_server\node_modules\kareem\index.js:370:33
+    at processTicksAndRejections (node:internal/process/task_queues:78:11) {
+  originalStack: 'Error\n' +
+    '    at model.Query._wrappedThunk [as _find] (C:\\Project\\UCCPSBD\\UCCP_server\\node_modules\\mongoose\\lib\\helpers\\query\\wrapThunk.js:25:28)\n' +
+    '    at C:\\Project\\UCCPSBD\\UCCP_server\\node_modules\\kareem\\index.js:370:33\n' +
+    '    at processTicksAndRejections (node:internal/process/task_queues:78:11)'
+}
+MongooseError: Query was already executed: membershiptypes.find({})
+    at model.Query._wrappedThunk [as _find] (C:\Project\UCCPSBD\UCCP_server\node_modules\mongoose\lib\helpers\query\wrapThunk.js:21:19)
+    at C:\Project\UCCPSBD\UCCP_server\node_modules\kareem\index.js:370:33
+    at processTicksAndRejections (node:internal/process/task_queues:78:11) {
+  originalStack: 'Error\n' +
+    '    at model.Query._wrappedThunk [as _find] (C:\\Project\\UCCPSBD\\UCCP_server\\node_modules\\mongoose\\lib\\helpers\\query\\wrapThunk.js:25:28)\n' +
+    '    at C:\\Project\\UCCPSBD\\UCCP_server\\node_modules\\kareem\\index.js:370:33\n' +
+    '    at processTicksAndRejections (node:internal/process/task_queues:78:11)'
+}
+MongooseError: Query was already executed: organizations.find({})
+    at model.Query._wrappedThunk [as _find] (C:\Project\UCCPSBD\UCCP_server\node_modules\mongoose\lib\helpers\query\wrapThunk.js:21:19)
+    at C:\Project\UCCPSBD\UCCP_server\node_modules\kareem\index.js:370:33
+    at processTicksAndRejections (node:internal/process/task_queues:78:11) {
+  originalStack: 'Error\n' +
+    '    at model.Query._wrappedThunk [as _find] (C:\\Project\\UCCPSBD\\UCCP_server\\node_modules\\mongoose\\lib\\helpers\\query\\wrapThunk.js:25:28)\n' +
+    '    at C:\\Project\\UCCPSBD\\UCCP_server\\node_modules\\kareem\\index.js:370:33\n' +
+    '    at processTicksAndRejections (node:internal/process/task_queues:78:11)'
+}
+MongooseError: Query was already executed: members.find({})
+    at model.Query._wrappedThunk [as _find] (C:\Project\UCCPSBD\UCCP_server\node_modules\mongoose\lib\helpers\query\wrapThunk.js:21:19)
+    at C:\Project\UCCPSBD\UCCP_server\node_modules\kareem\index.js:370:33
+    at processTicksAndRejections (node:internal/process/task_queues:78:11) {
+  originalStack: 'Error\n' +
+    '    at model.Query._wrappedThunk [as _find] (C:\\Project\\UCCPSBD\\UCCP_server\\node_modules\\mongoose\\lib\\helpers\\query\\wrapThunk.js:25:28)\n' +
+    '    at C:\\Project\\UCCPSBD\\UCCP_server\\node_modules\\kareem\\index.js:370:33\n' +
+    '    at processTicksAndRejections (node:internal/process/task_queues:78:11)'
+}
+MongooseError: Query was already executed: members.find({})
+    at model.Query._wrappedThunk [as _find] (C:\Project\UCCPSBD\UCCP_server\node_modules\mongoose\lib\helpers\query\wrapThunk.js:21:19)
+    at C:\Project\UCCPSBD\UCCP_server\node_modules\kareem\index.js:370:33
+    at processTicksAndRejections (node:internal/process/task_queues:78:11) {
+  originalStack: 'Error\n' +
+    '    at model.Query._wrappedThunk [as _find] (C:\\Project\\UCCPSBD\\UCCP_server\\node_modules\\mongoose\\lib\\helpers\\query\\wrapThunk.js:25:28)\n' +
+    '    at C:\\Project\\UCCPSBD\\UCCP_server\\node_modules\\kareem\\index.js:370:33\n' +
+    '    at processTicksAndRejections (node:internal/process/task_queues:78:11)'
+}
+MongooseError: Query was already executed: organizations.find({})
+    at model.Query._wrappedThunk [as _find] (C:\Project\UCCPSBD\UCCP_server\node_modules\mongoose\lib\helpers\query\wrapThunk.js:21:19)
+    at C:\Project\UCCPSBD\UCCP_server\node_modules\kareem\index.js:370:33
+    at processTicksAndRejections (node:internal/process/task_queues:78:11) {
+  originalStack: 'Error\n' +
+    '    at model.Query._wrappedThunk [as _find] (C:\\Project\\UCCPSBD\\UCCP_server\\node_modules\\mongoose\\lib\\helpers\\query\\wrapThunk.js:25:28)\n' +
+    '    at C:\\Project\\UCCPSBD\\UCCP_server\\node_modules\\kareem\\index.js:370:33\n' +
+    '    at processTicksAndRejections (node:internal/process/task_queues:78:11)'
+}
+MongooseError: Query was already executed: members.find({})
+    at model.Query._wrappedThunk [as _find] (C:\Project\UCCPSBD\UCCP_server\node_modules\mongoose\lib\helpers\query\wrapThunk.js:21:19)
+    at C:\Project\UCCPSBD\UCCP_server\node_modules\kareem\index.js:370:33
+    at processTicksAndRejections (node:internal/process/task_queues:78:11) {
+  originalStack: 'Error\n' +
+    '    at model.Query._wrappedThunk [as _find] (C:\\Project\\UCCPSBD\\UCCP_server\\node_modules\\mongoose\\lib\\helpers\\query\\wrapThunk.js:25:28)\n' +
+    '    at C:\\Project\\UCCPSBD\\UCCP_server\\node_modules\\kareem\\index.js:370:33\n' +
+    '    at processTicksAndRejections (node:internal/process/task_queues:78:11)'
+}
+MongooseError: Query was already executed: members.find({})
+    at model.Query._wrappedThunk [as _find] (C:\Project\UCCPSBD\UCCP_server\node_modules\mongoose\lib\helpers\query\wrapThunk.js:21:19)
+    at C:\Project\UCCPSBD\UCCP_server\node_modules\kareem\index.js:370:33
+    at processTicksAndRejections (node:internal/process/task_queues:78:11) {
+  originalStack: 'Error\n' +
+    '    at model.Query._wrappedThunk [as _find] (C:\\Project\\UCCPSBD\\UCCP_server\\node_modules\\mongoose\\lib\\helpers\\query\\wrapThunk.js:25:28)\n' +
+    '    at C:\\Project\\UCCPSBD\\UCCP_server\\node_modules\\kareem\\index.js:370:33\n' +
+    '    at processTicksAndRejections (node:internal/process/task_queues:78:11)'
+}
+MongooseError: Query was already executed: membershiptypes.find({})
+    at model.Query._wrappedThunk [as _find] (C:\Project\UCCPSBD\UCCP_server\node_modules\mongoose\lib\helpers\query\wrapThunk.js:21:19)
+    at C:\Project\UCCPSBD\UCCP_server\node_modules\kareem\index.js:370:33
+    at processTicksAndRejections (node:internal/process/task_queues:78:11) {
+  originalStack: 'Error\n' +
+    '    at model.Query._wrappedThunk [as _find] (C:\\Project\\UCCPSBD\\UCCP_server\\node_modules\\mongoose\\lib\\helpers\\query\\wrapThunk.js:25:28)\n' +
+    '    at C:\\Project\\UCCPSBD\\UCCP_server\\node_modules\\kareem\\index.js:370:33\n' +
+    '    at processTicksAndRejections (node:internal/process/task_queues:78:11)'
+}
+MongooseError: Query was already executed: members.find({})
+    at model.Query._wrappedThunk [as _find] (C:\Project\UCCPSBD\UCCP_server\node_modules\mongoose\lib\helpers\query\wrapThunk.js:21:19)
+    at C:\Project\UCCPSBD\UCCP_server\node_modules\kareem\index.js:370:33
+    at processTicksAndRejections (node:internal/process/task_queues:78:11) {
+  originalStack: 'Error\n' +
+    '    at model.Query._wrappedThunk [as _find] (C:\\Project\\UCCPSBD\\UCCP_server\\node_modules\\mongoose\\lib\\helpers\\query\\wrapThunk.js:25:28)\n' +
+    '    at C:\\Project\\UCCPSBD\\UCCP_server\\node_modules\\kareem\\index.js:370:33\n' +
+    '    at processTicksAndRejections (node:internal/process/task_queues:78:11)'
+}
+MongooseError: Query was already executed: members.find({})
+    at model.Query._wrappedThunk [as _find] (C:\Project\UCCPSBD\UCCP_server\node_modules\mongoose\lib\helpers\query\wrapThunk.js:21:19)
+    at C:\Project\UCCPSBD\UCCP_server\node_modules\kareem\index.js:370:33
+    at processTicksAndRejections (node:internal/process/task_queues:78:11) {
+  originalStack: 'Error\n' +
+    '    at model.Query._wrappedThunk [as _find] (C:\\Project\\UCCPSBD\\UCCP_server\\node_modules\\mongoose\\lib\\helpers\\query\\wrapThunk.js:25:28)\n' +
+    '    at C:\\Project\\UCCPSBD\\UCCP_server\\node_modules\\kareem\\index.js:370:33\n' +
+    '    at processTicksAndRejections (node:internal/process/task_queues:78:11)'
+}
+MongooseError: Query was already executed: members.find({})
+    at model.Query._wrappedThunk [as _find] (C:\Project\UCCPSBD\UCCP_server\node_modules\mongoose\lib\helpers\query\wrapThunk.js:21:19)
+    at C:\Project\UCCPSBD\UCCP_server\node_modules\kareem\index.js:370:33
+    at processTicksAndRejections (node:internal/process/task_queues:78:11) {
+  originalStack: 'Error\n' +
+    '    at model.Query._wrappedThunk [as _find] (C:\\Project\\UCCPSBD\\UCCP_server\\node_modules\\mongoose\\lib\\helpers\\query\\wrapThunk.js:25:28)\n' +
+    '    at C:\\Project\\UCCPSBD\\UCCP_server\\node_modules\\kareem\\index.js:370:33\n' +
+    '    at processTicksAndRejections (node:internal/process/task_queues:78:11)'
+}
+MongooseError: Query was already executed: members.find({})
+    at model.Query._wrappedThunk [as _find] (C:\Project\UCCPSBD\UCCP_server\node_modules\mongoose\lib\helpers\query\wrapThunk.js:21:19)
+    at C:\Project\UCCPSBD\UCCP_server\node_modules\kareem\index.js:370:33
+    at processTicksAndRejections (node:internal/process/task_queues:78:11) {
+  originalStack: 'Error\n' +
+    '    at model.Query._wrappedThunk [as _find] (C:\\Project\\UCCPSBD\\UCCP_server\\node_modules\\mongoose\\lib\\helpers\\query\\wrapThunk.js:25:28)\n' +
+    '    at C:\\Project\\UCCPSBD\\UCCP_server\\node_modules\\kareem\\index.js:370:33\n' +
+    '    at processTicksAndRejections (node:internal/process/task_queues:78:11)'
+}
+MongooseError: Query was already executed: members.findOne({ _id: new ObjectId("62a213400731b06fb64bf19...
+    at model.Query._wrappedThunk [as _findOne] (C:\Project\UCCPSBD\UCCP_server\node_modules\mongoose\lib\helpers\query\wrapThunk.js:21:19)
+    at C:\Project\UCCPSBD\UCCP_server\node_modules\kareem\index.js:370:33
+    at processTicksAndRejections (node:internal/process/task_queues:78:11) {
+  originalStack: 'Error\n' +
+    '    at model.Query._wrappedThunk [as _findOne] (C:\\Project\\UCCPSBD\\UCCP_server\\node_modules\\mongoose\\lib\\helpers\\query\\wrapThunk.js:25:28)\n' +
+    '    at C:\\Project\\UCCPSBD\\UCCP_server\\node_modules\\kareem\\index.js:370:33\n' +
+    '    at processTicksAndRejections (node:internal/process/task_queues:78:11)'
+}

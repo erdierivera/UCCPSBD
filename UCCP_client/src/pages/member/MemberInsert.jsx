@@ -151,12 +151,14 @@ class MembersInsert extends Component {
         if(isRemoved)
         {
             document.getElementById("removalWrapper").style.display = 'block';
+            this.setState({ isActive: false })
         }
         else        
         {
             document.getElementById("removalWrapper").style.display = 'none';
             this.setState({ removalDate: '' })
             this.setState({ reasonOfRemoval: '' })
+            this.setState({ isActive: true })
         }
         this.setState({ isRemoved: isRemoved || false })
     }  
@@ -237,6 +239,12 @@ class MembersInsert extends Component {
 
     handleIsActiveCheckboxChange = event => {
         const isActive = event.target.checked
+        
+        if(isActive)
+        {
+            this.setState({ isRemoved: false })
+        }
+        
         this.setState({ isActive: isActive || false })
     }
 
@@ -400,16 +408,6 @@ class MembersInsert extends Component {
                     <span style={{ marginLeft: 8 }}>Is Removed?</span>
                     </label>
                 </div>
-
-                {/* <div style={{ fontFamily: 'system-ui' }}>
-                    <label>
-                    <Checkbox
-                        checked={isActive}
-                        onChange={this.handleIsActiveCheckboxChange}
-                    />
-                    <span style={{ marginLeft: 8 }}>Is Active?</span>
-                    </label>
-                </div> */}
                 
                 <InputWrapper>
                     <Label>First Name: </Label>
