@@ -2,10 +2,10 @@ const express = require('express')
 //const bodyParser = require('body-parser')
 const cors = require('cors')
 
-const db = require('C:\\Project\\UCCPSBD\\UCCP_server\\db')
-const memberRouter = require('C:\\Project\\UCCPSBD\\UCCP_server\\routes\\member-router.js')
-const membershipTypeRouter = require('C:\\Project\\UCCPSBD\\UCCP_server\\routes\\membershiptype-router.js')
-const organizationRouter = require('C:\\Project\\UCCPSBD\\UCCP_server\\routes\\organization-router.js')
+const db = require('C:\\Project\\UCCP_Membership\\UCCPSBD\\UCCP_server\\db')
+const memberRouter = require('C:\\Project\\UCCP_Membership\\UCCPSBD\\UCCP_server\\routes\\member-router.js')
+const membershipTypeRouter = require('C:\\Project\\UCCP_Membership\\UCCPSBD\\UCCP_server\\routes\\membershiptype-router.js')
+const organizationRouter = require('C:\\Project\\UCCP_Membership\\UCCPSBD\\UCCP_server\\routes\\organization-router.js')
 
 const app = express()
 const apiPort = process.env.PORT;

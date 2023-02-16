@@ -246,6 +246,10 @@ class MembersInsert extends Component {
         }
         
         this.setState({ isActive: isActive || false })
+
+        if (isActive) {
+            this.setState({ isRemoved : false })
+        }
     }
 
     handleChangeInputCivilStatus = event => {
