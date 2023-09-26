@@ -12,7 +12,7 @@ class HomePage extends Component {
     render() {
         return (
             <Wrapper>
-                <img src={homePhoto} width="auto" height="100%" alt="" style={{marginLeft: '150px'}} />
+                <img src={homePhoto} width="auto" height="100%" alt="" style={{marginLeft: '350px'}} />
             </Wrapper>
         )
     }

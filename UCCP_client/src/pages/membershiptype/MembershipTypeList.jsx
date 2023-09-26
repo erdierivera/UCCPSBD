@@ -7,7 +7,7 @@ import styled from 'styled-components'
 import 'react-table-6/react-table.css'
 
 const Wrapper = styled.div`
-    padding:130px 50px 50px 50px; 
+    padding:5px 50px 50px 50px; 
     position: relative;
 `
 
