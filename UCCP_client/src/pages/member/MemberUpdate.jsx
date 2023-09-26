@@ -14,7 +14,7 @@ const Title = styled.h1.attrs({
 const Wrapper = styled.div.attrs({
     className: 'form-group',
 })`
-    padding:5px 50px 50px 50px; 
+    padding:125px 50px 50px 50px; 
     position: relative;
     display: flex;
     flex-direction: column;

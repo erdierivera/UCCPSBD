@@ -7,7 +7,7 @@ import styled from 'styled-components'
 import 'react-table-6/react-table.css'
 
 const Wrapper = styled.div`
-    padding:5px 50px 50px 50px;    
+    padding:125px 50px 50px 50px;    
     position: relative;
     td{font-size:30px}
 `
@@ -239,7 +239,6 @@ class MembersList extends Component {
                             desc: false
                             }
                         ]}
-                        showPagination={true}
                         showPageSizeOptions={true}
                         minRows={0}
                         className="table table-bordered"
