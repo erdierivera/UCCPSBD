@@ -151,11 +151,11 @@ class MembersUpdate extends Component {
         const isRemoved = event.target.checked
         
         if (isRemoved) {
-            document.getElementById("removalWrapper").style.display = 'block';
-            this.setState({ isActive: false })
+            document.getElementById("removalWrapper").style.display = 'block'
+            this.setState({ isActive: false });
         }
         else {
-            document.getElementById("removalWrapper").style.display = 'none';
+            document.getElementById("removalWrapper").style.display = 'none'
             this.setState({ removalDate: '' })
             this.setState({ reasonOfRemoval: '' })
             this.setState({ isActive: true })
@@ -266,6 +266,10 @@ class MembersUpdate extends Component {
         }
 
         this.setState({ isActive: isActive | false })
+
+        if (isActive) {
+            this.setState({ isRemoved : false })
+        }
     }
 
     handleUpdateMember = async () => {
@@ -334,16 +338,23 @@ class MembersUpdate extends Component {
             reasonOfRemoval: member.data.data.reasonOfRemoval || '',
         })
 
-        if(this.state.civilStatus.toLowerCase() === 'married')
-            {
-                document.getElementById("marriageWrapper").style.display = 'block';
-            }
-            else        
-            {
-                document.getElementById("marriageWrapper").style.display = 'none';
-                this.setState({ weddingDate: '' })
-                this.setState({ spouse: '' })
-            }
+        if (this.state.civilStatus.toLowerCase() === 'married') {
+            document.getElementById("marriageWrapper").style.display = 'block';
+        }
+        else {
+            document.getElementById("marriageWrapper").style.display = 'none';
+            this.setState({ weddingDate: '' })
+            this.setState({ spouse: '' })
+        }
+        
+        if (this.state.isRemoved) {
+            document.getElementById("removalWrapper").style.display = 'block';
+        }
+        else {
+            document.getElementById("removalWrapper").style.display = 'none';
+            this.setState({ removalDate: '' })
+            this.setState({ reasonOfRemoval: '' })
+        }
     }
 
     render() {

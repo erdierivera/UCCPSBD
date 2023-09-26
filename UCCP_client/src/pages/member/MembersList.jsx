@@ -239,6 +239,7 @@ class MembersList extends Component {
                             desc: false
                             }
                         ]}
+                        showPagination={true}
                         showPageSizeOptions={true}
                         minRows={0}
                         className="table table-bordered"

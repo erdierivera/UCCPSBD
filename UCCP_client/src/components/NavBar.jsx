@@ -12,6 +12,7 @@ const Nav = styled.nav.attrs({
     className: 'navbar navbar-expand-lg navbar-dark bg-dark',
     // className: 'navbar navbar-expand-lg navbar-dark bg-secondary',
 })`
+    position: fixed;
     display: flex;
     z-index: 2;
     width: 100%;
